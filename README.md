@@ -1,3 +1,3 @@
 # FPP
-Fixed PRO Project Management Tool
+Fixed PRO Automation and Project Management Tool
 
