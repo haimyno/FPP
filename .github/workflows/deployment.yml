@@ -35,4 +35,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             docker pull haimyno/fpp:$GITHUB_SHA
-           
+            docker run -d --name myapp-container haimyno/fpp:$GITHUB_SHA
