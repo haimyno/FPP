@@ -18,7 +18,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           # Add the private key from GitHub secrets
-          echo "$PRIVATE_SSH_KEY" > ~/.ssh/id_rsa
+          echo "${{ secrets.PRIVATE_SSH_key }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           # Add the server to known_hosts to prevent SSH prompt
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
@@ -27,5 +27,6 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -v root@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:e90846a9dc0a47eba3262c8cefbdf7622f14be29'
+
     
 
