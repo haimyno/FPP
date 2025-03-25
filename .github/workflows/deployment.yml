@@ -13,18 +13,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
+      - name: SSH to Server and Deploy Container
+        uses: appleboy/ssh-action@v0.1.1
         with:
-          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
-
-      - name: Add server to known hosts
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-
-      - name: Pull Docker image from Docker Hub
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "docker pull haimyno/fpp-project:$GITHUB_SHA"
-
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            docker pull haimyno/fpp-project:e90846a9dc0a47eba3262c8cefbdf7622f14be29
+            
