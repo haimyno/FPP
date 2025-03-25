@@ -10,17 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code from the repository
       - name: Checkout Code
         uses: actions/checkout@v2
+        
+      # Step 2: Set up SSH
       - name: Set up SSH
         run: |
+          # Create .ssh directory if it doesn't exist
           mkdir -p ~/.ssh
+
+          # Add the private key from GitHub secrets to the id_rsa file
           echo "${{ secrets.PRIVATE_SSH_KEY }}" > ~/.ssh/id_rsa
+
+          # Set the correct permissions for the private key
           chmod 600 ~/.ssh/id_rsa
+
+          # Add the server to known_hosts to prevent SSH prompt
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
+      # Step 3: Deploy using SSH
       - name: Deploy using SSH
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa user@${{ secrets.PRIVATE_SSH_KEY }} 'docker pull your-image'
+          # Replace 'user' with the actual SSH username (e.g., 'ubuntu', 'root', etc.)
+          # Use the correct host name or IP address from the secrets
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa user@${{ secrets.HOST }} 'docker pull your-image'
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
