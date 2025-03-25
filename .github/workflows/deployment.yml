@@ -27,7 +27,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           chmod 700 ~/.ssh
 
-
           # Add the server to known_hosts to prevent SSH prompt
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
@@ -36,6 +35,6 @@ jobs:
         run: |
           # Replace 'user' with the actual SSH username (e.g., 'ubuntu', 'root', etc.)
           # Use the correct host name or IP address from the secrets
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:e90846a9dc0a47eba3262c8cefbdf7622f14be29'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:0e37a1a11bc32da88eeb306ffe0d36d20a417417'
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
