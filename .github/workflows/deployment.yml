@@ -45,5 +45,5 @@ jobs:
             #export MY_IMAGE_TAG="${GITHUB_SHA}"
             #docker stop your-container || true  # Ignore if the container isn't running
           EOF
-          env:
-            SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
