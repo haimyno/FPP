@@ -47,6 +47,8 @@ jobs:
         run: |
           # Replace 'user' with the actual SSH username (e.g., 'ubuntu', 'root', etc.)
           # Use the correct host name or IP address from the secrets
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:e90846a9dc0a47eba3262c8cefbdf7622f14be29'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+            docker pull haimyno/fpp-project:$GITHUB_SHA
+          EOF  
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
