@@ -28,12 +28,6 @@ jobs:
           docker push haimyno/fpp:$GITHUB_SHA
 
       - name: SSH to Server and Deploy Container
-        uses: appleboy/ssh-action@v0.1.1
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            docker pull  haimyno/fpp:$GITHUB_SHA
+        run: echo "docker pull  haimyno/fpp:$GITHUB_SHA"
             
             
