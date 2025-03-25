@@ -24,8 +24,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t haimyno/fpp:$GITHUB_SHA .
-          docker push haimyno/fpp:$GITHUB_SHA
+          docker build -t haimyno/fpp-project:$GITHUB_SHA .
+          docker push haimyno/fpp-project:$GITHUB_SHA
 
       - name: SSH to Server and Deploy Container
         uses: appleboy/ssh-action@v0.1.1
@@ -34,5 +34,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            docker pull docker.io/haimyno/fpp:$GITHUB_SHA
+            docker pull docker.io/${{ secrets.REPO }}/fpp:$GITHUB_SHA
             
