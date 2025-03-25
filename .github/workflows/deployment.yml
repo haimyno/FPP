@@ -12,21 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Log in to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and push Docker image
-        run: |
-          docker build -t haimyno/fpp-project:$GITHUB_SHA .
-          docker push haimyno/fpp-project:$GITHUB_SHA
-
       # Step 2: Set up SSH
       - name: Set up SSH
         run: |
@@ -47,6 +32,11 @@ jobs:
         run: |
           # Replace 'user' with the actual SSH username (e.g., 'ubuntu', 'root', etc.)
           # Use the correct host name or IP address from the secrets
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:e90846a9dc0a47eba3262c8cefbdf7622f14be29'
+          # SSH into the remote server and pull the Docker image
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+            #docker pull haimyno/fpp-project:$GITHUB_SHA
+            # You can add additional deploy commands here
+          EOF
+          
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
