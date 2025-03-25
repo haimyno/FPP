@@ -10,7 +10,14 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 // Define an interface for the props
+<<<<<<< HEAD
 
+=======
+interface MyReactComponentProps {
+    message: string;
+    
+  }
+>>>>>>> 26460b601358339c74ba0b0ae34aad95df8f6287
 export default function Role ({message}:{message: string}) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
