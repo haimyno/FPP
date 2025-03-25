@@ -32,7 +32,7 @@ jobs:
         run: |
           # Create .ssh directory if it doesn't exist
           mkdir -p ~/.ssh
-
+          chmod 700 ~/.ssh
           # Add the private key from GitHub secrets to the id_rsa file
           echo "${{ secrets.PRIVATE_SSH_KEY }}" > ~/.ssh/id_rsa
 
