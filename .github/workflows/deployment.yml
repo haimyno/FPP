@@ -25,6 +25,7 @@ jobs:
 
           # Set the correct permissions for the private key
           chmod 600 ~/.ssh/id_rsa
+          chmod 700 ~/.ssh
 
           # Add the server to known_hosts to prevent SSH prompt
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
