@@ -34,5 +34,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            docker rmi hello-world
+            docker pull myusername/myapp:$GITHUB_SHA
            
