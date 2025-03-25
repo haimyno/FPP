@@ -48,10 +48,6 @@ jobs:
           # Replace 'user' with the actual SSH username (e.g., 'ubuntu', 'root', etc.)
           # Use the correct host name or IP address from the secrets
           # SSH into the remote server and pull the Docker image
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
-            docker pull haimyno/fpp-project:$GITHUB_SHA
-            # You can add additional deploy commands here 
-          EOF
-          
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:$GITHUB_SHA'          
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
