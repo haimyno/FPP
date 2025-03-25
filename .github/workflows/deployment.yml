@@ -34,6 +34,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            docker pull docker.io/${{ secrets.REPO }}/fpp-project:$GITHUB_SHA
+            docker pull haimyno/fpp-project:$GITHUB_SHA
             
             
