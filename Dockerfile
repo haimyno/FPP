@@ -57,7 +57,6 @@ RUN chown -R www-data:www-data /etc/nginx/conf.d
 COPY default.conf /etc/nginx/conf.d/
 
 # Expose the container port
-
 EXPOSE 9000
 EXPOSE 5173
 ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
