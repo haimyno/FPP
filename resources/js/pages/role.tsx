@@ -9,12 +9,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/dashboard',
     },
 ];
-// Define an interface for the props
 
-interface MyReactComponentProps {
-    message: string;
-    
-  }
 
 export default function Role ({message}:{message: string}) {
     return (
