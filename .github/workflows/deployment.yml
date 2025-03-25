@@ -50,7 +50,7 @@ jobs:
           # SSH into the remote server and pull the Docker image
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             docker pull haimyno/fpp-project:$GITHUB_SHA
-            # You can add additional deploy commands here
+            # You can add additional deploy commands here 
           EOF
           
         env:
