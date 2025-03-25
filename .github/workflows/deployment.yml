@@ -28,7 +28,5 @@ jobs:
         run: |
           ssh -v root@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:e90846a9dc0a47eba3262c8cefbdf7622f14be29'
 
-
-
           
 
