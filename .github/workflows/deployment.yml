@@ -12,8 +12,15 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PRIVATE_SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
-      - name: Set up SSH keys
-        uses: webfactory/ssh-agent-action@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.PRIVATE_SSH_KEY }}
+      - name: Deploy using SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa user@${{ secrets.PRIVATE_SSH_KEY }} 'docker pull your-image'
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
