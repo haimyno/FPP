@@ -27,3 +27,4 @@ jobs:
       - name: Pull Docker image from Docker Hub
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "docker pull haimyno/fpp-project:$GITHUB_SHA"
+
