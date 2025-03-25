@@ -27,6 +27,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           chmod 700 ~/.ssh
 
+
           # Add the server to known_hosts to prevent SSH prompt
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
@@ -35,15 +36,6 @@ jobs:
         run: |
           # Replace 'user' with the actual SSH username (e.g., 'ubuntu', 'root', etc.)
           # Use the correct host name or IP address from the secrets
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
-            # Multiple commands to be executed on the server            
-            docker pull haimyno/fpp-project:$GITHUB_SHA
-            export MY_IMAGE_TAG="$GITHUB_SHA"
-            #echo "MY_IMAGE_TAG=${GITHUB_SHA}" >> $GITHUB_ENV  # Use GITHUB_SHA as the tag for the image
-            #echo "MY_IMAGE=nginx:${MY_IMAGE_TAG}" >> $GITHUB_ENV  # Combine and assign image name with tag
-            #docker-compose up --build 
-            #export MY_IMAGE_TAG="${GITHUB_SHA}"
-            #docker stop your-container || true  # Ignore if the container isn't running
-          EOF
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker images'
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
