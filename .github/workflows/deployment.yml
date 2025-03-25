@@ -34,5 +34,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            docker pull haimyno/fpp:$GITHUB_SHA
+            docker rmi hello-world
            
