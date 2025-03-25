@@ -8,10 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 30
     steps:
-      # Step 1: Checkout code from the repository
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
@@ -26,7 +25,8 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t haimyno/fpp-project:$GITHUB_SHA .
-          docker push haimyno/fpp-project:$GITHUB_SHA        
+          docker push haimyno/fpp-project:$GITHUB_SHA
+
       # Step 2: Set up SSH
       - name: Set up SSH
         run: |
@@ -38,7 +38,6 @@ jobs:
 
           # Set the correct permissions for the private key
           chmod 600 ~/.ssh/id_rsa
-          chmod 700 ~/.ssh
 
           # Add the server to known_hosts to prevent SSH prompt
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
@@ -48,8 +47,6 @@ jobs:
         run: |
           # Replace 'user' with the actual SSH username (e.g., 'ubuntu', 'root', etc.)
           # Use the correct host name or IP address from the secrets
-          
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:$GITHUB_SHA'
-        
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} ''docker pull haimyno/fpp-project::$GITHUB_SHA'
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}  
