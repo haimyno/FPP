@@ -13,20 +13,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Set up SSH key for deployment
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          # Add the private key from GitHub secrets
-          echo "${{ secrets.PRIVATE_SSH_key }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          # Add the server to known_hosts to prevent SSH prompt
-          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-
-      # Deploy code to your server via SSH
-      - name: Deploy to server
-        run: |
-          ssh -v root@${{ secrets.HOST }} 'docker pull haimyno/fpp-project:e90846a9dc0a47eba3262c8cefbdf7622f14be29'
-
-    
-
+      - name: Set up SSH keys
+        uses: webfactory/ssh-agent-action@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.PRIVATE_SSH_KEY }}
