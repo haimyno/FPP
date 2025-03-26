@@ -51,9 +51,7 @@ jobs:
             
             docker pull haimyno/fpp-project:$GITHUB_SHA
 
-            echo "GITHUB_SHA: $GITHUB_SHA"
-            
-            # You can add additional deploy commands here
+            echo "GITHUB_SHA: $GITHUB_SHA"  
           EOF   
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
