@@ -25,6 +25,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t haimyno/fpp-project:$GITHUB_SHA .
+          
       # Step 2: Set up SSH
       - name: Set up SSH
         run: |
@@ -49,7 +50,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             
             echo "this is ${{ secrets.USERNAME }}"
-            echo "this is ${GITHUB_SHA}"
+            echo "this is $GITHUB_SHA"
             # You can add additional deploy commands here
           EOF
            
