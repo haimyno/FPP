@@ -43,4 +43,4 @@ jobs:
            
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+          PRIVATE_KEY: "My value"
