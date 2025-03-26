@@ -51,7 +51,7 @@ jobs:
             
             echo "this is ${{ secrets.USERNAME }}"  
 
-            export MY_IMAGE_TAG=${{ github.sha }}
+            export MY_IMAGE_TAG=${GITHUB_SHA}
             
             docker pull haimyno/fpp-project:${{ github.sha }}
             # You can add additional deploy commands here
