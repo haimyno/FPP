@@ -40,7 +40,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             # Pull the Docker image with the commit hash tag
             docker pull haimyno/fpp-project:$GITHUB_SHA
-
+            echo "haimyno/fpp-project:$GITHUB_SHA"
             # Stop the existing container (if running)
             docker stop fpp-project-container || true
             docker rm fpp-project-container || true
