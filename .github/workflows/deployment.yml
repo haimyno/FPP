@@ -21,7 +21,6 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t haimyno/fpp-project:$GITHUB_SHA .
-  
       # Step 5: Set up SSH (creating directory, adding private key, and host)
       - name: Set up SSH
         run: |
