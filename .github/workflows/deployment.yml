@@ -41,7 +41,7 @@ jobs:
       - name: Deploy using SSH
         run: |
           # SSH into the remote server and run commands
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }}<< 'EOF'
             # Pull the Docker image with the commit hash tag
             docker pull haimyno/fpp-project:$GITHUB_SHA
             
