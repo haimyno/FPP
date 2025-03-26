@@ -1,4 +1,3 @@
-
 name: Deploy to Server
 
 on:
@@ -50,8 +49,9 @@ jobs:
           # SSH into the remote server and pull the Docker image
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             
-            echo "this is ${{ secrets.USERNAME }}"
-            echo "this is ${{ github.sha }}"
+            echo "this is ${{ secrets.USERNAME }}"  
+            
+            docker pull haimyno/fpp-project:${{ github.sha }}
             # You can add additional deploy commands here
           EOF
            
