@@ -54,7 +54,8 @@ jobs:
             export MY_IMAGE_TAG=${{ github.sha }}
             
             docker pull haimyno/fpp-project:${{ github.sha }}
-            docker-compose up -d
+            docker-compose up -d 
+            
             # You can add additional deploy commands here
           EOF
            
