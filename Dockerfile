@@ -51,7 +51,7 @@ RUN npm install
 #RUN chown -R www-data:www-data /var/www && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 #RUN chown -R www-data:www-data /var/www
 RUN chown -R www-data:www-data /etc/nginx/conf.d
-
+RUN chown -R www-data:www-data /var/www 
 # Copy the Nginx configuration file into the container
 #COPY ./nginx/default.conf /etc/nginx/conf.d/
 COPY default.conf /etc/nginx/conf.d/
