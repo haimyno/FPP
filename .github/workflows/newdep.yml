@@ -56,7 +56,7 @@ jobs:
             docker pull haimyno/fpp-project:${{ github.sha }}
             docker stop laravel-app || true
             docker stop nginx || true
-            docker rm
+            docker rm nginx laravel-app
             
             #docker inspect -f '{{.State.Running}}' laravel-app || docker rm laravel-app
             
