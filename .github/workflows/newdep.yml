@@ -37,7 +37,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             
             echo "this is ${{ secrets.USERNAME }}"
-            echo "this is ${{ secrets.USERNAME }}"
+            echo "this is ${GITHUB_SHA}"
             # You can add additional deploy commands here
           EOF
            
