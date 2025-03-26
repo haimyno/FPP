@@ -33,7 +33,7 @@ export default defineConfig({
 	origin: '*'
 	},
 		hmr: {
-            host: '192.168.1.146',
+            host: '196.188.63.81',
         },
 		proxy: {
       //'/app': 'http://localhost',  // Proxy API requests to Laravel backend
