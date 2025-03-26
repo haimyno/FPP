@@ -57,8 +57,11 @@ jobs:
             docker stop laravel-app || true
             docker stop nginx || true
             docker stop mysql-db || true
+            
             docker inspect -f '{{.State.Running}}' laravel-app || docker rm laravel-app
+            
             docker inspect -f '{{.State.Running}}' nginx || docker rm nginx
+            
             docker-compose up -d 
             
             # You can add additional deploy commands here
